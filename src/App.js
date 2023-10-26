@@ -2,7 +2,7 @@ import logo from './logo.svg';
 //import './App.css';
 import C01componente from './Componentes/C01componente';
 import AppForm from './Componentes/AppForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from './Componentes/firebase';
 
@@ -25,7 +25,10 @@ function App() {
   }
 }
 
-fnRead();
+//fnRead();
+useEffect( () => {
+  fnRead();
+}, []);
 
 /////// DELETE - ELIMINAR /////////
   const [idActual,setIdActual] = useState("");
@@ -45,8 +48,8 @@ fnRead();
             <span onClick={() => setIdActual(p.id)}>A</span>
           </p>
         )
-      }
-       
+      }  
+
     </div>
   );
 }
