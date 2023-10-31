@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import C01componente from './Componentes/C01componente';
 import AppForm from './Componentes/AppForm';
 import { useEffect, useState } from 'react';
-import { collection, doc, onSnapshot, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from './Componentes/firebase';
 
 function App() {
@@ -32,7 +32,11 @@ useEffect( () => {
 
 /////// DELETE - ELIMINAR /////////
   const [idActual,setIdActual] = useState("");
-  const fnDelete = (xId) => {
+  const fnDelete = async (xId) => {
+    if(window.confirm("Confirme para eliminar")){
+      await deleteDoc(doc(db, 'persona', xId));
+      console.log("Se elimino...."+xId)
+    }
 
   }
 
