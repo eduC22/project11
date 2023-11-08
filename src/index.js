@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+////import { EmailAuthProvider } from 'firebase/auth';
+import { AuthProvider } from './ruteo/AuthContext';
 
 //import 'bootswatch/dist/solar/bootstrap.min.css'; // agregando tema solar del bootswatch
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthProvider >  
     <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 
