@@ -14,8 +14,18 @@ function RegisterForm() {
   const [password, setPassword] = useState(''); // Variable para password
   
   const navigate = useNavigate();               // Navegación
+          
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-  const handleRegister = (e) => { 
+    try {
+      await register(email, password);
+      //await registerUser(email, password);    // Verifica correo ya registrado
+      navigate('/iniciarsesion'); // Redirigir a ruta /iniciarsesion
+      console.log("Se registro usuario...xxx");
+    } catch (error) {
+      console.error('Error al registrar usuario:', error.message);
+    }
   }
 
   return (

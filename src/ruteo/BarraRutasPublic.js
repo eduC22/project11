@@ -10,6 +10,8 @@ import Home from '../public/Home';
 import Dashboard from '../public/Dashboard';
 import Informacion from '../public/Informacion';
 import Noticias from '../public/Noticias';
+import LoginForm from '../login/LoginForm';
+import RegisterForm from '../login/RegisterForm';
 
 const BarraRutasPublic = () => {
     const { user } = useAuth();
@@ -17,18 +19,33 @@ const BarraRutasPublic = () => {
     const navigate = useNavigate();
          
     const handleSignOut = () => {
+      if (user) {
+        signOut(auth)
+          .then(() => {
+            // Cierre de sesión exitoso
+            navigate('/home'); // Redirigir a ruta /home
+          })
+          .catch((error) => {
+            console.error('Error al cerrar sesión:', error);
+          });
+      }
     }
+    
   
     return (
       <div style={{ background:"greenyellow", }}>
         <nav>
           <div id="login">
             <ul>
-              <li><Link to="/nuevoregistro">Registrar</Link></li>
+              <li><Link to="/RegisterForm">Registrar</Link></li>
   
-              <li><Link onClick={handleSignOut} >Cerrar sesión</Link> </li>
-              <li> <Link to="/iniciarsesion">Iniciar sesión</Link> </li>
-                    
+              {user ? (         ////////  Para cerrar sesión   ///////////
+                <li><Link onClick={handleSignOut} > Cerrar sesión </Link> </li> 
+                ) : (
+                <li> <Link to="/LoginForm">Iniciar sesión</Link> </li>
+              )}
+              
+                                  
             </ul>
           </div>
           
@@ -43,6 +60,8 @@ const BarraRutasPublic = () => {
         </nav>
   
         <Routes>
+          <Route path="/RegisterForm" element={<RegisterForm />} />
+          <Route path="/LoginForm" element={<LoginForm />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/home" element={<Home />} />
           <Route path="/Informacion" element={<Informacion />} />

@@ -18,6 +18,13 @@ import Fotos from '../protegido/sistemafile/Fotos';
 //////////////////////// PAG. PUBLICOS /////////////////
 import RegisterForm from '../login/RegisterForm';
 import LoginForm from '../login/LoginForm';
+import AppLista from '../protegido/sistemacrud/AppLista';
+import ListaDeProfesores from '../protegido/sistemacrud/ListaDeProfesores';
+import Carreras from '../protegido/sistemacrud/Carreras';
+import Deportes from '../protegido/sistemacrud/Deportes';
+import Videos from '../protegido/sistemafile/Videos';
+import DocPDF from '../protegido/sistemafile/DocPDF';
+import DocWord from '../protegido/sistemafile/DocWord';
 
 const BarraRutasProtected = () => {
     const { user } = useAuth();
@@ -25,25 +32,53 @@ const BarraRutasProtected = () => {
     const navigate = useNavigate();
   
     const handleSignOut = () => {
+      if (user) {
+        signOut(auth)
+          .then(() => {
+            // Cierre de sesión exitoso
+            navigate('/home'); // Redirigir a ruta /home
+          })
+          .catch((error) => {
+            console.error('Error al cerrar sesión:', error);
+          });
+      }
     }
   
     return (
-      <div style={{ background:"royalblue", padding:"10px" }}>
+      <div>
         <nav>
           <div id="login">
             <ul>
-              <li><Link to="/nuevoregistro">Registrar</Link></li>
+            <li><Link to="/nuevoregistro">Registrar</Link></li>
+
+            {user ? (         ////////  Usuario autenticado  ///////////
+                <li>Usuario autenticado: <span> {user.email}</span> </li> 
+                 ) : (
+            null
+            )}
   
-              <li><Link onClick={handleSignOut} >Cerrar sesión</Link> </li> 
+            {user ? (         ////////  Para cerrar sesión   ///////////
+                <li><Link onClick={handleSignOut} > Cerrar sesión </Link> </li> 
+                ) : (
+                <li> <Link to="/LoginForm">Iniciar sesión</Link> </li>
+              )}
   
             </ul>
           </div>
               
           <div id="menu">
             <ul>
-              <li><Link to="/sistema-crud/alumnos">Alumnos</Link> </li>
-                      
+              <li><Link to="/sistema-crud/AppLista">Alumnos(AppLista)</Link> </li>
+              <li><Link to="/sistema-crud/ListaDeProfesores">Profesores</Link> </li>
+              <li><Link to="/sistema-crud/Carreras">Carreras</Link> </li>
+              <li><Link to="/sistema-crud/Deportes">Deportes</Link> </li>
+
+
               <li><Link to="/sistema-file/fotos">Fotos</Link> </li>
+              <li><Link to="/sistema-file/Videos">Videos</Link> </li>
+              <li><Link to="/sistema-file/DocPDF">Doc.PDF</Link> </li>
+              <li><Link to="/sistema-file/DocWord">Doc.Word</Link> </li>
+
             </ul>
           </div>
         </nav>
@@ -56,13 +91,19 @@ const BarraRutasProtected = () => {
           
           <Route path="/sistema-crud" element={<MarcoParaSistemaCRUD />}>
             <Route index element={<SistemaCRUD />} />
-            <Route path="alumnos" element={<ListaDeAlumnos />} />
+            <Route path="AppLista" element={<AppLista />} />
+            <Route path="ListaDeProfesores" element={<ListaDeProfesores />} />
+            <Route path="Carreras" element={<Carreras />} />
+            <Route path="Deportes" element={<Deportes />} />
           </Route>
   
   
           <Route path="/sistema-file" element={<MarcoParaSistemaFILE />}>
             <Route index element={<SistemaFILE />} />
             <Route path="fotos" element={<Fotos />} />
+            <Route path="videos" element={<Videos />} />
+            <Route path="DocPDF" element={<DocPDF />} />
+            <Route path="DocWord" element={<DocWord />} />
           </Route>
   
         </Routes>        
@@ -74,7 +115,7 @@ export default BarraRutasProtected;
      
 function MarcoParaSistemaCRUD() {
     return (
-      <div style={{background:"cornflowerblue", padding:"10px"}}>
+      <div>
         <h1>Marco sistema CRUD</h1>
         < Outlet /> {/* Aquí se mostrarán las rutas secundarias */}
       </div>
@@ -83,7 +124,7 @@ function MarcoParaSistemaCRUD() {
   
 function MarcoParaSistemaFILE() {
     return (
-      <div style={{background:"slateblue", padding:"10px"}}>
+      <div>
         <h1>Marco Sistema FILES</h1>
         < Outlet /> {/* Aquí se mostrarán las rutas secundarias */}
       </div>

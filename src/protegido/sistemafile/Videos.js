@@ -4,7 +4,11 @@ const Videos = () => {
   return (
     <div id='file'>
       <h1>Videos</h1>
-      Página para videos...
+      Selecciona tipo de videos:<br/>
+      Accion<br/>
+      Deportes<br/>
+      Drama<br/>
+      Comedia<br/>
     </div>
   )
 }
