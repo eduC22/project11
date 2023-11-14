@@ -24,8 +24,8 @@ const AppLista = (props) => {
   }
   //console.log(docBD); 
 
-  fnRead(); //Prueba sin useEffect
-  //useEffect(()=>{fnRead();}, [props.idActual]);
+  //fnRead(); //Prueba sin useEffect
+  useEffect(()=>{fnRead();}, [props.idActual]);
 
   ////// Delete ////////////////////
   const [idActual, setIdActual] = useState("");

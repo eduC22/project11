@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../ruteo/AuthContext'; // (7). Importando contexto
 import { useNavigate } from 'react-router-dom';
-     
+    
+
 function LoginForm() {
   
   const { signIn } = useAuth();                 // (7). Usando el contexto
@@ -32,9 +33,12 @@ function LoginForm() {
 
 
   return (
-    <div id='public'>
+    
+    <div id='public' >
       <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSignIn}>
+      
+     <form onSubmit={handleSignIn}>
+
         <div>
           <label>Email:</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

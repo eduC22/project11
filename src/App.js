@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
       <h1>Saludos soy Julio Eduardo Tamo Cáceres</h1><br/>
-      Hoy es 08 de noviembre del 2023 y son las 19:30 pm
+      Hoy es 14 de noviembre del 2023 y son las 16:45 pm
      <Router>
       { user ? <BarraRutasProtected /> : <BarraRutasPublic />}
      </Router>

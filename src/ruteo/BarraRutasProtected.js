@@ -19,12 +19,14 @@ import Fotos from '../protegido/sistemafile/Fotos';
 import RegisterForm from '../login/RegisterForm';
 import LoginForm from '../login/LoginForm';
 import AppLista from '../protegido/sistemacrud/AppLista';
-import ListaDeProfesores from '../protegido/sistemacrud/ListaDeProfesores';
+////import ListaDeProfesores from '../protegido/sistemacrud/ListaDeProfesores';
 import Carreras from '../protegido/sistemacrud/Carreras';
 import Deportes from '../protegido/sistemacrud/Deportes';
 import Videos from '../protegido/sistemafile/Videos';
 import DocPDF from '../protegido/sistemafile/DocPDF';
 import DocWord from '../protegido/sistemafile/DocWord';
+import Egresados from '../protegido/sistemacrud/Egresados';
+
 
 const BarraRutasProtected = () => {
     const { user } = useAuth();
@@ -68,14 +70,14 @@ const BarraRutasProtected = () => {
               
           <div id="menu">
             <ul>
-              <li><Link to="/sistema-crud/AppLista">Alumnos(AppLista)</Link> </li>
-              <li><Link to="/sistema-crud/ListaDeProfesores">Profesores</Link> </li>
+           {/*<li><Link to="/sistema-crud/ListaDeProfesores">Profesores</Link> </li>*/}
               <li><Link to="/sistema-crud/Carreras">Carreras</Link> </li>
               <li><Link to="/sistema-crud/Deportes">Deportes</Link> </li>
+              <li><Link to="/sistema-crud/Egresados">Egresados</Link> </li>
+              <li><Link to="/sistema-crud/AppLista">Alumnos(AppLista)</Link> </li>
 
-
+                            <li><Link to="/sistema-file/Videos">Videos</Link> </li>
               <li><Link to="/sistema-file/fotos">Fotos</Link> </li>
-              <li><Link to="/sistema-file/Videos">Videos</Link> </li>
               <li><Link to="/sistema-file/DocPDF">Doc.PDF</Link> </li>
               <li><Link to="/sistema-file/DocWord">Doc.Word</Link> </li>
 
@@ -91,17 +93,19 @@ const BarraRutasProtected = () => {
           
           <Route path="/sistema-crud" element={<MarcoParaSistemaCRUD />}>
             <Route index element={<SistemaCRUD />} />
-            <Route path="AppLista" element={<AppLista />} />
-            <Route path="ListaDeProfesores" element={<ListaDeProfesores />} />
+         {/*<Route path="ListaDeProfesores" element={<ListaDeProfesores />} />*/}
             <Route path="Carreras" element={<Carreras />} />
             <Route path="Deportes" element={<Deportes />} />
+            <Route path="Egresados" element={<Egresados />} />
+            <Route path="AppLista" element={<AppLista />} />
           </Route>
   
   
           <Route path="/sistema-file" element={<MarcoParaSistemaFILE />}>
             <Route index element={<SistemaFILE />} />
-            <Route path="fotos" element={<Fotos />} />
+            
             <Route path="videos" element={<Videos />} />
+            <Route path="fotos" element={<Fotos />} />
             <Route path="DocPDF" element={<DocPDF />} />
             <Route path="DocWord" element={<DocWord />} />
           </Route>

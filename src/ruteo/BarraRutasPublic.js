@@ -12,6 +12,8 @@ import Informacion from '../public/Informacion';
 import Noticias from '../public/Noticias';
 import LoginForm from '../login/LoginForm';
 import RegisterForm from '../login/RegisterForm';
+import Contacto from '../public/Contacto';
+
 
 const BarraRutasPublic = () => {
     const { user } = useAuth();
@@ -31,7 +33,6 @@ const BarraRutasPublic = () => {
       }
     }
     
-  
     return (
       <div style={{ background:"greenyellow", }}>
         <nav>
@@ -51,10 +52,11 @@ const BarraRutasPublic = () => {
           
           <div id="menu">
             <ul>
-              <li><Link to="/">Portada</Link> </li>
+              {/*<li><Link to="/">Portada</Link> </li>*/}
               <li><Link to="/home">Home</Link> </li>
               <li><Link to="/Informacion">Informacion</Link> </li>
               <li><Link to="/Noticias">Noticias</Link> </li>
+              <li><Link to="/Contacto">Contacto</Link> </li>
             </ul>
           </div>
         </nav>
@@ -62,10 +64,11 @@ const BarraRutasPublic = () => {
         <Routes>
           <Route path="/RegisterForm" element={<RegisterForm />} />
           <Route path="/LoginForm" element={<LoginForm />} />
-          <Route path="/" element={<Dashboard />} />
+          {/*<Route path="/" element={<Dashboard />} />*/}
           <Route path="/home" element={<Home />} />
           <Route path="/Informacion" element={<Informacion />} />
           <Route path="/Noticias" element={<Noticias />} />
+          <Route path="/Contacto" element={<Contacto />} />
         </Routes> 
       </div>
     )
