@@ -34,11 +34,33 @@ function LoginForm() {
 
   return (
     
-    <div id='public' >
-      <h2>Iniciar Sesión</h2>
-      
-     <form onSubmit={handleSignIn}>
+    <div className='container text-center'>
+      <div className='card bs-secondary p-3 mt-3'>
+        
+      <h2 className='col-md-12'>Iniciar Sesión</h2>
 
+      <form className='card card-body' onSubmit={handleSignIn}>
+        <div className='form-group input-group'>
+          <label id="file" className='form-control float-start'>Ingrese Email</label>
+        </div>
+        
+        <div className='form-group input-group'>
+          <input className='form-control float-start' type="email" placeholder='Email...' value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+
+        <div className='form-group input-group'>
+          <label id="file" className='form-control float-start'>Ingrese su Contraseña</label>
+        </div>
+
+        <div className='form-group input-group'>
+          <input className='form-control float-start'type="password" placeholder='Contraseña...' value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button className='btn btn-primary btn-block' type="submit">Iniciar Sesión</button>
+      </form>
+
+     {/*<form onSubmit={handleSignIn}>
         <div>
           <label>Email:</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -49,8 +71,10 @@ function LoginForm() {
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Iniciar Sesión</button>
-      </form>
-    </div>
+  </form>*/}
+        </div>
+      </div>
+    
   );
 }
 
